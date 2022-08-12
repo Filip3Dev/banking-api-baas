@@ -1,0 +1,13 @@
+components:
+  schemas:
+    Account:
+      type: "object"
+      properties:
+        externalUserId:
+          type: "string"
+          example: "61"
+          description: "The user id on BBX system"
+        fiatSymbol:
+          type: "string"
+          example: "BRL"
+          description: "Fiat currency symbol"

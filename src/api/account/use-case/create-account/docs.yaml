@@ -1,0 +1,76 @@
+paths:
+  /account:
+    post:
+      description: "Create an Account on RedBenx Banking"
+      operationId: "createAccount"
+      tags:
+        - account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      security:
+        - secret: []
+      responses:
+        "201":
+          description: create an account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+              example:
+                id: 1,
+                externalUserId: "61"
+                isActive: false,
+                createdAt: "2021-12-10T00:06:08.943Z"
+                updatedAt: "2021-12-10T00:06:08.943Z"
+                limit: 1000000
+                balance: 0
+                segmentation:
+                  id: 1
+                  slug: "NORMAL"
+                  createdAt: "2022-06-30T11:31:20.495Z"
+                  updatedAt: "2022-06-30T11:31:20.495Z"
+                status:
+                  id: 1
+                  slug: "ACTIVE"
+                  createdAt: "2022-06-30T11:30:07.791Z"
+                  updatedAt: "2022-06-30T11:30:07.791Z"
+                  fiat:
+                    id: 1
+                    symbol: "BRL"
+                    isBlocked: false,
+                    createdAt: "2022-06-30T14:50:16.724Z"
+                    updatedAt: "2022-06-30T14:50:16.724Z"
+        "400":
+          description: "account already exists when creating account"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                account_already_exists:
+                  value:
+                    code: 400
+                    message:
+                      name: "DomainException"
+                      message: "Account already exists"
+                      code: 400
+                      codeAsString: "account_already_exists"
+        "404":
+          description: "fails when trying to create an account with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Fiat symbol not found"
+                      code: 404
+                      codeAsString: "invalid_fiat_symbol"

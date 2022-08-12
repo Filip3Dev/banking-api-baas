@@ -1,0 +1,14 @@
+node_modules/
+.git/
+.vscode/
+coverage/
+yarn.lock
+
+.dockerignore
+Dockerfile
+docker/
+docs/
+
+.gitignore
+.eslintrc
+.editorconfig

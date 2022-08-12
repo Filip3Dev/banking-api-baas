@@ -1,0 +1,61 @@
+paths:
+  /account/balance:
+    get:
+      description: "Get the Account Balance"
+      operationId: "getBalance"
+      tags:
+        - account
+      parameters:
+        - in: query
+          name: externalUserId
+          schema:
+            type: string
+          description: "Identifier of the user on the external system"
+        - in: query
+          name: fiatSymbol
+          schema:
+            type: string
+          description: "Fiat currency symbol"
+      security:
+        - secret: []
+      responses:
+        "200":
+          description: get the account information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+              example:
+                id: 1
+                isActive: false
+                isBlocked: false
+        "400":
+          description: "failed to get the account information"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_token:
+                  value:
+                    code: 400
+                    message:
+                      name: "DomainException"
+                      message: "Token was not provided"
+                      code: 400
+                      codeAsString: "account_validation_error"
+        "404":
+          description: "failed to find the account"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                account_not_found:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Account not found"
+                      code: 404
+                      codeAsString: "account_not_found"

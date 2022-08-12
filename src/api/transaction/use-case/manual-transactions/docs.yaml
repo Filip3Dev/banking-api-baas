@@ -1,0 +1,57 @@
+paths:
+  /transaction:
+    post:
+      description: 'Create an Manual Transaction on RedBenx Banking'
+      operationId: 'ManualTransaction'
+      tags:
+        - transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction Manual Body'
+      security:
+        - secret: []
+      responses:
+        '201':
+          description: create an manual credit transaction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction Response'
+              example:
+                amount: '1000'
+                operationType: 'CREDIT'
+                balance: '50000'
+                dtTransaction: '2022-07-11T12:45:42.797Z'
+        '400':
+          description: 'account not enough balance'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                account_already_exists:
+                  value:
+                    code: 400
+                    message:
+                      name: 'DomainException'
+                      message: 'Insufficient BRL balance'
+                      code: 400
+                      codeAsString: 'insufficient_fiat_balance'
+        '404':
+          description: 'fails when trying to create an manual credit transaction with an invalid fiat symbol'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: 'DomainException'
+                      message: 'Fiat symbol not found'
+                      code: 404
+                      codeAsString: 'invalid_fiat_symbol'

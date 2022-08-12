@@ -1,0 +1,26 @@
+components:
+  schemas:
+    Error:
+      type: 'object'
+      properties:
+        code:
+          type: 'number'
+          example: 400
+        message:
+          type: 'object'
+          properties:
+            name:
+              type: 'string'
+              example: 'DomainException'
+            code:
+              type: 'number'
+              example: 400
+            codeAsString:
+              type: 'string'
+              example: 'no_assets_metadata'
+              message: 'No assets metadata were provided by Asset Metadata provider'
+  securitySchemes:
+    BBX Auth Token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

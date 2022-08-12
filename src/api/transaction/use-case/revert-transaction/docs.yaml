@@ -1,0 +1,42 @@
+paths:
+  /transaction/revert_buy:
+    post:
+      description: 'Create an revert transaction on RedBenx Banking'
+      operationId: 'RevertTransaction'
+      tags:
+        - transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction Request Body'
+      security:
+        - Secret: []
+      responses:
+        '201':
+          description: create an revert transaction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction Response'
+              example:
+                id: '76'
+                amount: '1000'
+                balance: '1000'
+                dtTransaction: '2022-07-11T12:45:42.797Z'
+        '404':
+          description: 'fails when trying to create an revert transaction with an invalid fiat symbol'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: 'DomainException'
+                      message: 'Fiat symbol not found'
+                      code: 404
+                      codeAsString: 'invalid_fiat_symbol'

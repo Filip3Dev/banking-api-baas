@@ -1,0 +1,126 @@
+paths:
+  /statements:
+    get:
+      description: 'Return user statement'
+      operationId: 'getStatement'
+      tags:
+        - statement
+      parameters:
+        - in: query
+          name: month
+          schema:
+            type: string
+          description: Month and year to filter
+        - in: query
+          name: page
+          schema:
+            type: number
+          description: Page 
+        - in: query
+          name: pageSize
+          schema:
+            type: number
+          description: Quantity of results per page 
+        - in: query
+          name: externalUserId
+          schema:
+            type: string
+          description: Id of External User Id
+        - in: query
+          name: fiatSymbol
+          schema:
+            type: string
+          description: Symbol identification of current FIAT, (BRL, USD ...)
+      security:
+        - BBX Auth Token: []
+      responses:
+        '200':
+          description: get user statement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User Statement'
+              example:
+                  haveTransactions: true
+                  statement:
+                    - id: 8
+                      accountId: 4
+                      operationType: "CREDIT"
+                      amount: 100
+                      dtTransaction: "2022-07-01T09:32:32.775Z"
+                      isVisible: true
+                      description: "Deposito"
+                      externalIdentifier: "1"
+                  months:
+                    - "jan/2021"
+                    - "jul/2021"
+                    - "dez/2021"
+                    - "jan/2022"
+                    - "mar/2022"
+                  totalResults: 10
+                  currentPage: 1
+                  perPage: 50
+                  totalPages: 1
+                  balance: 1091
+        '400':
+          description: 'failed to get user statement'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                token_not_provided:
+                  value:
+                    code: 400
+                    message:
+                      name: 'DomainException'
+                      message: 'Token was not provided'
+                      code: 400
+                      codeAsString: 'user_statement_validation_error'
+                invalid_token:
+                  value:
+                    code: 400
+                    message:
+                      name: 'DomainException'
+                      message: 'Invalid token provided'
+                      code: 400
+                      codeAsString: 'invalid_token'
+                invalid_external_user_id:
+                  value:
+                    code: 400
+                    message:
+                      name: 'DomainException'
+                      message: 'Invalid external user id'
+                      code: 400
+                      codeAsString: 'invalid_external_user_id'
+                invalid_fiat_symbol:
+                  value:
+                    code: 400
+                    message:
+                      name: 'DomainException'
+                      message: 'Invalid fiat symbol'
+                      code: 400
+                      codeAsString: 'invalid_fiat_symbol'
+        '404':
+          description: failed to find a resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                account_not_found:
+                  value:
+                    code: 404
+                    message:
+                      name: 'DomainException'
+                      message: 'Account not found'
+                      code: 404
+                      codeAsString: 'account_not_found'
+                month_is_invalid:
+                  value:
+                    code: 404
+                    message:
+                      name: 'DomainException'
+                      message: 'Month is invalid'
+                      code: 404
+                      codeAsString: 'month_is_invalid'

@@ -1,0 +1,39 @@
+paths:
+  /listing-transaction-types:
+    get:
+      description: Return transaction types
+      operationId: listTransactionTypes
+      tags:
+        - transaction
+      security:
+        - BBX Auth Token: []
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionType"
+              example:
+                statement:
+                  - id: 1
+                    slug: "BUY_CRYPTO"
+                    nameExtract: "BUY_CRYPTO"
+                    description: "Compra de criptomoeda"
+                    operationType: "CREDIT"
+                    isActive: true
+        "404":
+          description: failed to find a transaction type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                account_not_found:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Result not found"
+                      code: 404
+                      codeAsString: "result_not_found"

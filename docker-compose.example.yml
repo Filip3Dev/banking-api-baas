@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  banking_api:
+    container_name: banking_api
+    build:
+      context: ./
+      target: local
+    environment:
+      - NODE_ENV=development
+      - PORT=9000
+      - DEBUG=true
+      - PRIVATE_KEY="example-key"
+      - SOCKET_TIMEOUT=2000
+      - SENTRY_DSN=https://sentry.io/xxxxxx
+    volumes:
+      - "./:/usr/src/app"
+    ports:
+      - 9000:9000
+      - 9229:9229
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: banking
+    volumes:
+      - "./docker/db/pgdata:/var/lib/postgresql/data"
+    ports:
+      - 5432:5432
+
+  db_test:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test
+    ports:
+      - 5433:5432

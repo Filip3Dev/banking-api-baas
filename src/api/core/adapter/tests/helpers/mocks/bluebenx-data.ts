@@ -1,0 +1,26 @@
+import {
+  DigitalAccountGenerateTokenResponse,
+  DigitalAccountRevertTransferResponse,
+  DigitalAccountTransferResponse,
+  DigitalAccountValidatePinResponse,
+} from '_core/adapter/interfaces/digital-account-interfaces'
+
+export const MOCKED_GENERATE_TOKEN_DATA: DigitalAccountGenerateTokenResponse = {
+  token_type: 'Bearer',
+  expires_in: 3600,
+  access_token:
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI2ZDRjYmJmZGFmMDIzZTA0OGQxNjljNmM1NGE1ZmE4Y2JlYzFlZWU1NzNlZWMxOTdhOTFhMTQxZDZhODdlYzY0NzU2ZTNmN2RlNDE4ZGY0In0.eyJhdWQiOiIzIiwianRpIjoiYjZkNGNiYmZkYWYwMjNlMDQ4ZDE2OWM2YzU0YTVmYThjYmVjMWVlZTU3M2VlYzE5N2E5MWExNDFkNmE4N2VjNjQ3NTZlM2Y3ZGU0MThkZjQiLCJpYXQiOjE2Mjg1MTE4NTMsIm5iZiI6MTYyODUxMTg1MywiZXhwIjoxNjI4NTE1NDUzLCJzdWIiOiI2MSIsInNjb3BlcyI6W119.eqQHzGlFBK2YqEn32bLGMLGtXyGrVVyGygzearrINHvloeJKbtZjIC74misOYh5IuSpN_Chb2Ftmf-hADwrxJIBpwpTgJuJVjp3Wm3opq2k-ZuXFOjEoZR098GCUjtdcSBeJEKN_u5IpAGxXxAvzyo0bkezWFB2zMLPpgKbu5Wb5SnQt6Mv3p8cxv-JDIeMxB452pjBMnpI2RZL-41gMe3NO9IqC7LPPdPIn4du6fhNg5c-knbokGgBQrwnhsc44-mgUef7ZjPCpF4M4rd1z04dViegmej_offVF_WEQHbaG5M55S3dR-0p1rWqAdc0d4IfCB-2KwFQmCI8ZzLTPwFdb2Ca1l5Up4hSmADx3HRov3XQCNtJ9NkshV-FZIlabUvs60Cw5n8MtdowhWrD3PvWO-6Vn58VbuOsDNRmkARlG-p0E_y19t_M5k5KXQoAqeYtLmYYWWV3-y_gearA_edA4QjDFgQQz5myDRa6DIq1_mHeVnnRV8pNcHkGOZebNXsl__77WVcTJcexj5Bh7xNd2n_kdt51S8JSscAPQt9l1qZDvbs94hidGbuYyHVWtFFgaXQvfVLthPl8xUPh9iktT5JQ1C8Z5Et8BkFqtiHZWgmcXpyWaV28bziQttiQ0Y4yrUukDijPuyNf2BDr5N7MJyaoEPyh7yihV3JYRxnk',
+}
+
+export const MOCKED_TRANSFER_DATA: DigitalAccountTransferResponse = {
+  id: 1,
+}
+
+export const MOCKED_REVERT_TRANSFER_DATA: DigitalAccountRevertTransferResponse = {
+  id: 2,
+}
+
+export const MOCKED_VALIDATE_PIN_DATA: DigitalAccountValidatePinResponse = {
+  msg: 'Pin válido',
+  acao: null,
+}

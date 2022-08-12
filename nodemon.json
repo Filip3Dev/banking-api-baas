@@ -1,0 +1,7 @@
+{
+  "delay": "0",
+  "watch": ["src"],
+  "exec": "npm run dev",
+  "ext": ".ts,.js,.yaml,.tsx",
+  "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules"]
+}

@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es6",
+    "module": "commonjs",
+    "pretty": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "importHelpers": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "_config/*": ["src/config/*"],
+      "_account/*": ["src/api/account/*"],
+      "_asset/*": ["src/api/asset/*"],
+      "_core/*": ["src/api/core/*"],
+      "_transaction/*": ["src/api/transaction/*"],
+      "_interfaces/*": ["src/interfaces/*"],
+      "_interfaces": ["src/interfaces"],
+      "_cli/*": ["src/cli/*"],
+      "_src/*": ["src/*"]
+    },
+    "typeRoots": ["src/@types", "./node_modules/@types"],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": ["es5", "es6"]
+  },
+  "exclude": ["./node_modules/*.ts", "dist"]
+}

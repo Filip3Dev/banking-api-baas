@@ -1,0 +1,77 @@
+components:
+  schemas:
+    Transaction Response:
+      type: 'object'
+      properties:
+        amount:
+          type: 'number'
+          example: 1000
+        balance:
+          type: 'number'
+          example: 50000
+        dtTransaction:
+          type: 'string'
+          example: '2021-12-10T00:06:08.943Z'
+
+    Transaction Request Body:
+      type: 'object'
+      properties:
+        amount:
+          type: 'number'
+          example: 150.00
+          required: true
+          description: transaction amount value
+        extTransactionId:
+          type: 'string'
+          example: 'BTC'
+          required: true
+          description: Transaction id in external service
+        externalUserId:
+          type: 'string'
+          example: '1234'
+          required: true
+          description: User id in external service
+        description:
+          type: 'string'
+          example: '1234'
+          required: false
+          description: Transaction description
+        fiatSymbol:
+          type: 'string'
+          example: '1234'
+          required: true
+          description: Fiat symbol
+
+    Transaction Manual Body:
+      type: 'object'
+      properties:
+        amount:
+          type: 'number'
+          example: 150.00
+          required: true
+          description: transaction amount value
+        extTransactionId:
+          type: 'string'
+          example: 'BTC'
+          required: true
+          description: Transaction id in external service
+        externalUserId:
+          type: 'string'
+          example: '1234'
+          required: true
+          description: User id in external service
+        description:
+          type: 'string'
+          example: '1234'
+          required: false
+          description: Transaction description
+        fiatSymbol:
+          type: 'string'
+          example: '1234'
+          required: true
+          description: Fiat symbol
+        transactionType:
+          type: 'string'
+          example: 'CASH_OUT_MANUAL_PAYMENT'
+          required: true
+          description: Identifier of the transaction on the external system

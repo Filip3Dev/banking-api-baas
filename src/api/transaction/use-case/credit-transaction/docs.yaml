@@ -1,0 +1,312 @@
+paths:
+  /transaction/cash_in:
+    post:
+      description: "Create an Transaction on RedBenx Banking"
+      operationId: "TransactionCashIn"
+      tags:
+        - transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction Request Body"
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an credit transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction Response"
+              example:
+                amount: "1000"
+                operationType: "CREDIT"
+                balance: "50000"
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "404":
+          description: "fails when trying to create an credit transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Fiat symbol not found"
+                      code: 404
+                      codeAsString: "invalid_fiat_symbol"
+
+  /transaction/deposit_finance:
+    post:
+      description: "Create an deposit Transaction for finance product on RedBenx Banking"
+      operationId: "TransactionDepositFinance"
+      tags:
+        - transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction Request Body"
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an deposit finance transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction Response"
+              example:
+                amount: "1000"
+                operationType: "DEPOSIT_FINANCE"
+                balance: "50000"
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "404":
+          description: "fails when trying to create an deposit finance transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Fiat symbol not found"
+                      code: 404
+                      codeAsString: "invalid"
+
+  /transaction/sell_crypto:
+    post:
+      description: "Create an sell crypto Transaction on RedBenx Banking"
+      operationId: "TransactionSellCrypto"
+      tags:
+        - transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction Request Body"
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an sell crypto transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction Response"
+              example:
+                amount: "1000"
+                operationType: "SELL_CRYPTO"
+                balance: "50000"
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "404":
+          description: "fails when trying to create an sell crypto transaction with an invalid crypto symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_crypto_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Crypto symbol not found"
+                      code: 404
+                      codeAsString: "invalid"
+        "500":
+          description: "fails when trying to create an sell crypto transaction with an invalid amount"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_amount:
+                  value:
+                    code: 500
+                    message:
+                      name: "DomainException"
+                      message: "Amount is invalid"
+                      code: 500
+                      codeAsString: "invalid"
+
+  /transaction/migration_dock_balance:
+    post:
+      description: "Create an migration dock balance Transaction on RedBenx Banking"
+      operationId: "TransactionMigrationDockBalance"
+      tags:
+        - transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction Request Body"
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an migration dock balance transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction Response"
+              example:
+                amount: "1000"
+                operationType: "MIGRATION_DOCK_BALANCE"
+                balance: "50000"
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "404":
+          description: "fails when trying to create an migration dock balance transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Fiat symbol not found"
+                      code: 404
+                      codeAsString: "invalid"
+        "500":
+          description: "fails when trying to create an migration dock balance transaction with an invalid amount"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_amount:
+                  value:
+                    code: 500
+                    message:
+                      name: "DomainException"
+                      message: "Amount is invalid"
+                      code: 500
+                      codeAsString: "invalid"
+
+  /transaction/cash_in_payment_slip:
+    post:
+      description: "Create an cash in payment slip Transaction on RedBenx Banking"
+      operationId: "TransactionCashInPaymentSlip"
+      tags:
+        - transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction Request Body"
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an cash in payment slip transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction Response"
+              example:
+                amount: "1000"
+                operationType: "CASH_IN_PAYMENT_SLIP"
+                balance: "50000"
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "404":
+          description: "fails when trying to create an cash in payment slip transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+            examples:
+              invalid_fiat_symbol:
+                value:
+                  code: 404
+                  message:
+                    name: "DomainException"
+                    message: "Fiat symbol not found"
+                    code: 404
+                    codeAsString: "invalid"
+        "500":
+          description: "fails when trying to create an cash in payment slip transaction with an invalid amount"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+            examples:
+              invalid_amount:
+                value:
+                  code: 500
+                  message:
+                    name: "DomainException"
+                    message: "Amount is invalid"
+                    code: 500
+                    codeAsString: "invalid"
+
+  /transaction/revert_out:
+    post:
+      description: "Create an revert out Transaction on RedBenx Banking"
+      operationId: "TransactionRevertOut"
+      tags:
+        - transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction Request Body"
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an revert out transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction Response"
+            example:
+              amount: "1000"
+              operationType: "REVERT_OUT"
+              balance: "50000"
+              dtTransaction: "2022-07-11T12:45:42.797Z"
+        "404":
+          description: "fails when trying to create an revert out transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+            examples:
+              invalid_fiat_symbol:
+                value:
+                  code: 404
+                  message:
+                    name: "DomainException"
+                    message: "Fiat symbol not found"
+                    code: 404
+                    codeAsString: "invalid"
+        "500":
+          description: "fails when trying to create an revert out transaction with an invalid amount"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+            examples:
+              invalid_amount:
+                value:
+                  code: 500
+                  message:
+                    name: "DomainException"
+                    message: "Amount is invalid"
+                    code: 500
+                    codeAsString: "invalid"

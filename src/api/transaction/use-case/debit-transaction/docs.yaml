@@ -1,0 +1,255 @@
+paths:
+  /transaction/cash_out:
+    post:
+      description: "Create an Transaction on RedBenx Banking"
+      operationId: "TransactionCashOut"
+      tags:
+        - transaction
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an debit transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+              example:
+                amount: 1000
+                operationType: "DEBIT"
+                balance: 50000
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "400":
+          description: "account not enough balance"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                account_already_exists:
+                  value:
+                    code: 400
+                    message:
+                      name: "DomainException"
+                      message: "Insufficient BRL balance"
+                      code: 400
+                      codeAsString: "insufficient_fiat_balance"
+        "404":
+          description: "fails when trying to create an debit transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Fiat symbol not found"
+                      code: 404
+                      codeAsString: "invalid_fiat_symbol"
+
+  /transaction/buy_crypto:
+    post:
+      description: "Create an Debit Transaction for crypto product on RedBenx Banking"
+      operationId: "TransactionBuyCrypto"
+      tags:
+        - transaction
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an credit transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+              example:
+                amount: 1000
+                operationType: "DEBIT"
+                balance: 50000
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "400":
+          description: "account not enough balance"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                account_already_exists:
+                  value:
+                    code: 400
+                    message:
+                      name: "DomainException"
+                      message: "Insufficient BRL balance"
+                      code: 400
+                      codeAsString: "insufficient_fiat_balance"
+        "404":
+          description: "fails when trying to create an debit transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Fiat symbol not found"
+                      code: 404
+                      codeAsString: "invalid_fiat_symbol"
+
+  /transaction/withdraw_finance:
+    post:
+      description: "Create an withdraw Transaction for finance product on RedBenx Banking"
+      operationId: "TransactionWithdrawFinance"
+      tags:
+        - transaction
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an withdraw debit transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+              example:
+                amount: 1000
+                operationType: "DEBIT"
+                balance: 50000
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "400":
+          description: "account not enough balance"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                account_already_exists:
+                  value:
+                    code: 400
+                    message:
+                      name: "DomainException"
+                      message: "Insufficient BRL balance"
+                      code: 400
+                      codeAsString: "insufficient_fiat_balance"
+        "404":
+          description: "fails when trying to create an debit transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Fiat symbol not found"
+                      code: 404
+                      codeAsString: "invalid_fiat_symbol"
+
+  /transaction/revert_in:
+    post:
+      description: "Create an Reversal Debit Transaction on RedBenx Banking"
+      operationId: "TransactionReversalDebitTransaction"
+      tags:
+        - transaction
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an reversal debit transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+              example:
+                amount: 1000
+                operationType: "DEBIT"
+                balance: 50000
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "400":
+          description: "account not enough balance"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                account_already_exists:
+                  value:
+                    code: 400
+                    message:
+                      name: "DomainException"
+                      message: "Insufficient BRL balance"
+                      code: 400
+                      codeAsString: "insufficient_fiat_balance"
+        "404":
+          description: "fails when trying to create an debit transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Fiat symbol not found"
+                      code: 404
+                      codeAsString: "invalid_fiat_symbol"
+
+  /transaction/cash_out_manual_payment:
+    post:
+      description: "Create an Manual Payment Transaction on RedBenx Banking"
+      operationId: "TransactionManualPayment"
+      tags:
+        - transaction
+      security:
+        - Secret: []
+      responses:
+        "201":
+          description: create an manual payment transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+              example:
+                amount: 1000
+                operationType: "DEBIT"
+                balance: 50000
+                dtTransaction: "2022-07-11T12:45:42.797Z"
+        "400":
+          description: "account not enough balance"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                account_already_exists:
+                  value:
+                    code: 400
+                    message:
+                      name: "DomainException"
+                      message: "Insufficient BRL balance"
+                      code: 400
+                      codeAsString: "insufficient_fiat_balance"
+        "404":
+          description: "fails when trying to create an debit transaction with an invalid fiat symbol"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_fiat_symbol:
+                  value:
+                    code: 404
+                    message:
+                      name: "DomainException"
+                      message: "Fiat symbol not found"
+                      code: 404
+                      codeAsString: "invalid_fiat_symbol"
