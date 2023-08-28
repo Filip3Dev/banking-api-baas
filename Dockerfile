@@ -1,4 +1,4 @@
-FROM node:16.13-bullseye-slim AS builder
+FROM keymetrics/pm2:18-slim AS builder
 WORKDIR /usr/src/app
 COPY package.json ./
 RUN npm install
