@@ -1,7 +1,7 @@
 import { AccountRepository } from '_account/repository/account-repository'
 import { loadConnection } from '_config/database'
 import { CryptoHashingHandler } from '_core/services/crypto-hashing-handler'
-import { UserEntity } from '_interfaces/adminjs/entities/user-entity'
+// import { UserEntity } from '_interfaces/adminjs/entities/user-entity'
 import { AccountResource } from '_interfaces/adminjs/resources/account-resource'
 import { AppSettingsResource } from '_interfaces/adminjs/resources/app-settings-resource'
 import { AssetNetworkResource } from '_interfaces/adminjs/resources/asset-network-resource'
@@ -80,16 +80,24 @@ async function setupAdminJs(): Promise<AdminJsConfig> {
       logo: '/static/brand.svg',
     },
   })
+  const DEFAULT_ADMIN = {
+    email: 'admin@example.com',
+    password: 'password',
+  }
 
   const adminJsRouter = AdminJsExpress.buildAuthenticatedRouter(
     adminJs,
     {
       authenticate: async (email, password) => {
-        const user = await UserEntity.findOne({ email })
-        if (!user || !hashingHandler.verify(user.hashedPassword, password)) {
-          return false
+        // const user = await UserEntity.findOne({ email })
+        // if (!user || !hashingHandler.verify(user.hashedPassword, password)) {
+        //   return false
+        // }
+        // return user
+        if (email === DEFAULT_ADMIN.email && password === DEFAULT_ADMIN.password) {
+          return Promise.resolve(DEFAULT_ADMIN)
         }
-        return user
+        return null
       },
       cookiePassword: process.env.ADMINJS_COOKIE_SECURITY_SECRET,
     },

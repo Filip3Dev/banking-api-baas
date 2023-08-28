@@ -24,12 +24,10 @@ class Application {
 
     // INTERFACES
     const { loadInterfaces } = await import('_interfaces')
-    const { http, socketIO, adminJsConfig } = loadInterfaces(this.logger)
+    const { http, socketIO } = loadInterfaces(this.logger)
     this.http = http
     this.io = socketIO
 
-    // ADMIN JS
-    await adminJsConfig
     await this.configureRoutes()
     await this.configureErrorHandler()
 

@@ -49,6 +49,14 @@ export class CreateFiat1526437428457 implements MigrationInterface {
       ($1, $2);`,
       ['REAL', 'BRL']
     )
+    await queryRunner.query(
+      `INSERT INTO ${tableName} (
+        name,
+        symbol
+      ) VALUES
+      ($1, $2);`,
+      ['Brazilian stablecoin REAL', 'BRLz']
+    )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

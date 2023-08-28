@@ -34,5 +34,5 @@ export const SECRET = {
 }
 
 export const DEFAULT_LIMIT = {
-  limit: 1000000,
+  limit: 100000,
 }
